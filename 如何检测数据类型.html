@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>如何检测数据类型</title>
+</head>
+<body></body>
+<script>
+  // typeof 检测基本数据，无法准确检测引用类型的值。
+  /* console.log(typeof 12) //number
+  console.log(typeof NaN) // number
+  console.log(typeof 'abc') // string
+  console.log(typeof true) // boolean
+  console.log(typeof undefined) // undefined
+  console.log(typeof null) // object
+  console.log(typeof Symbol(1)) // symbol
+  console.log(typeof BigInt(1234568912345689123456879)) // bigInt
+  console.log(typeof [1,2]) // object
+  console.log(typeof {a:1}) // object
+  console.log(typeof function(){}) // function */
+  /* 
+        特殊情况为什么null检测出的类型为什么是object，因为最初JavaScript的实现中，JS的值都是由一个类型标签
+    和实际数据表示的，对象的类型标签是0，由于null是空指针的引用，在大多数平台是（0x00），因此null的类型标签
+    是0，所以typeof null 是 object
+  */
+
+  //-----------------------------------------------------------------------------------------------
+
+  // instanceof 可以检测出构造函数的原型是否出现在实例身上，无法检测基本类型
+  /* console.log(1 instanceof Number) // false
+  console.log([1,2] instanceof Array) // true
+  console.log({a:1} instanceof Object) // true
+  console.log(function(){} instanceof Function) // true
+  function Animal(){}
+  const a = new Animal();
+  console.log(a instanceof Animal) // true */
+
+  // -----------------------------------------------------------------------------------------------
+  
+  // 基本类型和引用类型都能检测的方法Object.prototype.toString.call()
+  console.log(Object.prototype.toString.call(1)) // [object Number]
+  console.log(Object.prototype.toString.call('a')) // [object String]
+  console.log(Object.prototype.toString.call(true)) // [object Boolean]
+  console.log(Object.prototype.toString.call(null)) // [object Null]
+  console.log(Object.prototype.toString.call(undefined)) // [object Undefined]
+  console.log(Object.prototype.toString.call(Symbol(1))) // [object Symbol]
+  console.log(Object.prototype.toString.call(BigInt(1234567891234568912345689))) // [object BigInt]
+  console.log(Object.prototype.toString.call([1,2])) // [object Array]
+  console.log(Object.prototype.toString.call({a:1})) // [object Object]
+  console.log(Object.prototype.toString.call(function(){})) // [object Function]
+
+</script>
+</html>
