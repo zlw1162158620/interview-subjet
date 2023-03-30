@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>new实例化过程</title>
+</head>
+<body>
+  <script>
+    function Func(name) {
+      this.name = name
+      // 若构造函数有返回值，就会返回这个对象，而不是返回this指向的对象。
+      /* return {
+        name:"法外狂徒张三"
+      } */
+    }
+
+    function _new(f,...args){
+      // 创建一个空对象
+      const obj = {}
+
+      // 改变obj的隐式原型指向
+      obj.__proto__= f.prototype;
+
+      // 将obj的this指向fn
+      const r = f.apply(obj,args)
+      // console.log(r);
+
+      const isTrue = r && typeof r === 'function' || typeof r === 'object'
+      return isTrue ? r : obj
+    }
+    const f = _new(Func,'567')
+    console.log(f);
+  </script>
+</body>
+</html>
