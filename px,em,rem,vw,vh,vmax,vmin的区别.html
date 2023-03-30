@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>px,em,rem,vw,vh,vmax,vmin的区别</title>
+</head>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  html {
+    /* px 绝对单位，表一个屏幕或图片中的一个像素点 */
+    font-size: 15px; 
+  }
+  .father {
+    font-size: 13px;
+  }
+  .child {
+    background:red;
+    /* em:若设置自身字体大小，则会使用自身字体大小尺寸，即1em=12px，没有才会一直往上找，父->爷->...->浏览器默认大小 */
+    /* font-size: 12px;  */
+    /* border: 1em solid #000;
+    width: 10em;
+    height: 10em; */
+
+    /* rem 相对于根元素的font-size,即 1rem = 15px */
+    /* width: 10rem;
+    height: 10rem;
+    border: 1rem solid #000; */
+
+    /* vw,vh 可视窗口（屏幕）的宽高 1vw=可视窗口大小的1%，vh同理 */
+    /* width: 100vw;
+    height: 100vh; */
+
+    /* 
+      vmax，vmin vw和vh之间选较大（小）的值，width:10vmax就是 10 比 可视宽度 的宽度，vmin同理，
+      在vw大于vh的前提下，100vmax就是100vw
+    */
+    width: 100vmax;
+    height: 12vmax;
+  }
+</style>
+
+<body>
+  <div class="father">
+    <div class="child"></div>
+  </div>
+</body>
+<script>
+  console.log(document.body.clientWidth)
+  console.log(document.body.clientHeight)
+</script>
+</html>
